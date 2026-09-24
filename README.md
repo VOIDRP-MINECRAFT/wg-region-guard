@@ -1,6 +1,6 @@
-# 🏰 WG Region Guard
+<p align="center"><img src=".github/assets/banner.jpg" alt="WG Region Guard" width="100%"></p>
 
-> NeoForge 1.21.1 мод — блокирует обход защиты WorldGuard регионов через механики модов.
+<div align="center">
 
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-brightgreen?logo=minecraft)
 ![NeoForge](https://img.shields.io/badge/NeoForge-21.1.x-orange)
@@ -8,6 +8,10 @@
 ![Requires WorldGuard](https://img.shields.io/badge/requires-WorldGuard-blue)
 [![Build](https://github.com/VOIDRP-MINECRAFT/wg-region-guard/actions/workflows/build.yml/badge.svg)](https://github.com/VOIDRP-MINECRAFT/wg-region-guard/actions/workflows/build.yml)
 ![License](https://img.shields.io/badge/license-proprietary-red)
+
+</div>
+
+> NeoForge 1.21.1 мод — блокирует обход защиты WorldGuard регионов через механики модов.
 
 ---
 
