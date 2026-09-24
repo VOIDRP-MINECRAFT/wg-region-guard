@@ -6,21 +6,29 @@
 ![NeoForge](https://img.shields.io/badge/NeoForge-21.1.x-orange)
 ![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)
 ![Requires WorldGuard](https://img.shields.io/badge/requires-WorldGuard-blue)
+[![Build](https://github.com/VOIDRP-MINECRAFT/wg-region-guard/actions/workflows/build.yml/badge.svg)](https://github.com/VOIDRP-MINECRAFT/wg-region-guard/actions/workflows/build.yml)
 ![License](https://img.shields.io/badge/license-proprietary-red)
 
 ---
 
 ## 🗺️ Место в экосистеме
 
-```
-  Модовые механики (Create, Mekanism, Cataclysm...)
-        │ пытаются сломать/поставить блок
-        ▼
-  wg-region-guard (NeoForge, сервер)
-        │ проверяет WorldGuard флаги региона
-        ▼
-  ✅ разрешено (нет региона / у игрока права)
-  ❌ заблокировано (защищённый регион)
+```mermaid
+flowchart LR
+    subgraph MODS["Механики модов"]
+        M1["⚙️ Create: дрели, деплоеры, пушки"]
+        M2["🏭 Industrial Foregoing: Block Placer/Breaker"]
+        M3["💥 Взрывы и снаряды<br/>Cataclysm · Supplementaries · Immersive Aircraft"]
+        M4["🪓 Vein Mining · FallingTree · Carry On"]
+        M5["🌀 Телепортер Mekanism"]
+    end
+    EV["События NeoForge<br/>BreakEvent · EntityPlaceEvent · ExplosionEvent<br/>ProjectileImpact · EntityTeleport · RightClickBlock"]
+    WG{"WorldGuardBridge<br/>регион защищён?<br/>у игрока есть права?"}
+    OK["✅ разрешить"]
+    NO["⛔ отменить событие"]
+    MODS --> EV --> WG
+    WG -- "нет региона / есть права" --> OK
+    WG -- "защищённый регион" --> NO
 ```
 
 **Проблема:** WorldGuard защищает регионы от игроков, но не от не-игровых механик модов. Машины Create, буры, сеятели, снаряды и боссы могут свободно разрушать и строить в защищённых зонах.
@@ -61,12 +69,30 @@
 ## 🚀 Сборка и установка
 
 ```bash
-cd wg-region-guard
-./gradlew jar
-# → build/libs/wg-region-guard-*.jar
+./gradlew build
 ```
 
-Скопировать jar в `mods/` сервера. Конфигурация не требуется — мод активен сразу.
+Скопировать jar в `mods/` сервера — мод начинает работать сразу.
+
+---
+
+## ⚙️ Конфигурация
+
+`config/wg-region-guard-server.toml` — каждую защиту можно выключить отдельно (все включены по умолчанию):
+
+| Параметр | Что запрещает в защищённом регионе |
+|---|---|
+| `blockMachineBreak` · `blockMachinePlace` | Ломать и ставить блоки не-игровыми сущностями (дрели, деплоеры, Block Breaker/Placer) |
+| `blockVeinMining` | Цепную добычу в другом регионе, чем исходный блок |
+| `blockFallingTree` | Рубку брёвен внутри региона деревом, срубленным снаружи |
+| `blockSupplementaries` | Попадания рогатки и активацию говорящего блока |
+| `blockCreateDeployer` · `blockCreateCannons` | Деплоеры и урон блокам от Create Big Cannons |
+| `blockIFPlacer` · `blockIFBreaker` | Block Placer/Breaker из Industrial Foregoing |
+| `blockCarryOn` | Поднимать блоки с содержимым без прав на регион |
+| `blockMekanismTeleporter` | Телепорт Mekanism в регионы с запретом входа |
+| `blockCataclysm` | Разрушение блоков боссами L_Ender's Cataclysm |
+| `blockImmersiveAircraft` | Урон блокам от летательных аппаратов |
+| `blockModdedExplosions` | Модовые взрывы по защищённым блокам |
 
 ---
 
