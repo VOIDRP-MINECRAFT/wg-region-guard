@@ -49,8 +49,8 @@ dependencies {
 
     // WorldGuard + WorldEdit — stable versions that exist in EngineHub Maven.
     // At runtime the server runs 7.0.12 / 7.3.10-beta-01, but the API is backwards-compatible.
-    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.10'
-    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.3.0'
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.19'
+    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.4.5'
 
     // Paper API (superset of Bukkit/Spigot) — compileOnly, provided at runtime by Ketting
     compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
